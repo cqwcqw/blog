@@ -10,8 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da3b4ba3-6791-4d27-b63b-86450b72b194" name="Default Changelist" comment="Cblog">
+    <list default="true" id="da3b4ba3-6791-4d27-b63b-86450b72b194" name="Default Changelist" comment="blog commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/aboutme.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/aboutme.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +154,7 @@
       <workItem from="1604001164813" duration="534000" />
       <workItem from="1604001721502" duration="279000" />
       <workItem from="1604002028742" duration="446000" />
-      <workItem from="1604002535842" duration="2141000" />
+      <workItem from="1604002535842" duration="2995000" />
     </task>
     <task id="LOCAL-00001" summary="asdasd">
       <created>1604001085360</created>
@@ -176,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604003114349</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="blog commit">
+      <created>1604004780391</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604004780391</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +209,8 @@
     </ignored-roots>
     <MESSAGE value="asdasd" />
     <MESSAGE value="Cblog" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cblog" />
+    <MESSAGE value="blog commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="blog commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1814" y="593" width="430" height="383" key="#Assign_Data_Sources" timestamp="1603438535347">
@@ -248,10 +257,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1650" y="450" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603969066224" />
-    <state x="1700" y="459" key="FileChooserDialogImpl" timestamp="1604002552501">
+    <state x="1700" y="459" key="FileChooserDialogImpl" timestamp="1604004734591">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1700" y="459" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1604002552501" />
+    <state x="1700" y="459" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1604004734591" />
     <state width="1236" height="339" key="GridCell.Tab.0.bottom" timestamp="1604002475730">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -308,10 +317,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1400" y="278" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1604004682201" />
-    <state x="1512" y="433" key="Vcs.Push.Dialog.v2" timestamp="1604003947667">
+    <state x="1512" y="433" key="Vcs.Push.Dialog.v2" timestamp="1604005139623">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1512" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1604003947667" />
+    <state x="1512" y="433" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1604005139623" />
     <state x="1797" y="438" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1604000967620">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -332,6 +341,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1515" y="41" width="603" height="1278" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1603970288610" />
+    <state x="1719" y="564" key="git4idea.rebase.GitRebaseDialog" timestamp="1604005024313">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1719" y="564" key="git4idea.rebase.GitRebaseDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604005024313" />
+    <state x="1722" y="593" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1604005049971">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1722" y="593" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1604005049971" />
     <state x="1307" y="361" key="new project wizard" timestamp="1604003383739">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
