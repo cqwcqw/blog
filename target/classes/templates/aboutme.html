@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head  th:replace="common :: head(~{::title})">
+    <title>关于我</title>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav th:replace="common :: nav(5)" class="ui inverted attached segment m-padding-mini m-shadow"></nav>
+
+    <!-- 内容 -->
+    <div class="m-padding-normal m-margin-larger" style="min-height: 70%;">
+      <div class="ui container">
+        <div class="ui stackable grid">
+          <div class="eleven wide column">
+            <div class="ui segment">
+              <img th:src="@{/static/images/aboutme.jpg}" alt="" class="ui image rounded">
+            </div>
+          </div>
+          <div class="five wide column">
+            <div class="ui top attached segment secondary">
+              <div class="ui header">关于我</div>
+            </div>
+            <div class="ui attached segment">
+              <p class="m-text">毕业于厦门理工计算机系软件工程专业。</p>
+                <p class="m-text">前、后端都能写点。</p>
+            </div>
+            <div class="ui attached segment">
+              <div class="ui teal basic left label m-margin-tb">Java</div>
+              <div class="ui teal basic left label m-margin-tb">开发</div>
+              <div class="ui teal basic left label m-margin-tb">软件工程</div>
+            </div>
+              <div class="ui attached segment">
+                  <div class="ui olive basic left label m-margin-tb">Spring Boot</div>
+                  <div class="ui olive basic left label m-margin-tb">SemanticUI</div>
+                  <div class="ui olive basic left label m-margin-tb">BootStrap</div>
+                  <div class="ui olive basic left label m-margin-tb">ThymeLeaf</div>
+                  <div class="ui olive basic left label m-margin-tb">MySQL</div>
+                  <div class="ui olive basic left label m-margin-tb">MyBatis</div>
+                  <div class="ui olive basic left label m-margin-tb">JPA</div>
+                  <div class="ui olive basic left label m-margin-tb">MarkDown</div>
+                  <div class="ui olive basic left label m-margin-tb">Spring</div>
+                  <div class="ui olive basic left label m-margin-tb">SpringMVC</div>
+                  <div class="ui olive basic left label m-margin-tb">MarkDown</div>
+                  <div class="ui olive basic left label m-margin-tb">LayUI</div>
+              </div>
+            <div class="ui bottom attached segment">
+              <a href="" class="ui github button icon circular"><i class="github icon"></i></a>
+              <a href="" class="ui weixin button icon circular"><i class="weixin icon"></i></a>
+              <a href="" class="ui qq button icon circular" data-content="2664918243" data-position="bottom center"><i class="qq icon"></i></a>
+            </div>
+            <div class="ui wechat-qr flowing popup transirion hidden">
+              <img src="../static/images/QRCode.png" alt="" class="image ui rounded qrCode">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer th:replace="common :: footer" class="ui inverted vertical segment m-padding-massive"></footer>
+
+    <!--/*/<th:block th:replace="common :: script">/*/-->
+    <!--/*/</th:block>/*/-->
+
+    <script>
+      $('#nav-toggle-button').click(function(){
+        $('.m-mobile-toggle').toggleClass('m-mobile-hide');
+      });
+
+      $('.qq').popup();
+
+      $('.weixin').popup({
+        popup:$(".wechat-qr"),
+        on:'hover',
+        position:'bottom center'
+      });
+    </script>
+</body>
+</html>

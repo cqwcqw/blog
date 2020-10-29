@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common :: head(~{::title})">
+    <title>Error</title>
+</head>
+<body>
+
+<nav th:replace="common :: nav(0)" class="ui inverted attached segment m-padding-mini"></nav>
+
+<div class="m-padding-normal  m-margin-larger aligned middle" style="min-height: 70% !important;">
+    <div class="ui error message container">
+        <h2>Error</h2>
+        <div class="m-text">
+            问题路径是:
+            <div th:utext="'Failded Request URL :' + ${url}" th:remove="tag"></div>
+        </div>
+    </div>
+</div>
+<!--错误信息-->
+<div>
+    <div th:utext="'&lt;!--'" th:remove="tag"></div>
+    <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag"></div>
+    <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag"></div>
+    <ul th:remove="tag">
+        <li th:each="st : ${exception.stackTrace}" th:remove="tag"><span th:utext="${st}" th:remove="tag"></span></li>
+    </ul>
+    <div th:utext="'--&gt;'" th:remove="tag"></div>
+</div>
+
+<!-- 底部 -->
+<footer th:replace="common :: footer" class="ui inverted vertical segment m-padding-massive"></footer>
+
+<!--/*/<th:block th:replace="common :: script">/*/-->
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('#nav-toggle-button').click(function(){
+        $('.m-mobile-toggle').toggleClass('m-mobile-hide');
+    });
+</script>
+</body>
+</html>

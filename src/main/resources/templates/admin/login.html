@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png" />
+    <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/my.css">
+    <title>登录</title>
+</head>
+<style type="text/css">
+    body {
+        background-color: #DADADA;
+    }
+    body > .grid {
+        height: 100%;
+    }
+    .image {
+        margin-top: -100px;
+    }
+    .column {
+        max-width: 450px;
+    }
+</style>
+<script>
+    $(document)
+        .ready(function() {
+            $('.ui.form')
+                .form({
+                    fields: {
+                        username: {
+                            identifier  : 'username',
+                            rules: [
+                                {
+                                    type   : 'empty',
+                                    prompt : '请输入用户名'
+                                },
+                                {
+                                    type   : 'length[4]',
+                                    prompt : '用户名长度应该大于4位'
+                                }
+                            ]
+                        },
+                        password: {
+                            identifier  : 'password',
+                            rules: [
+                                {
+                                    type   : 'empty',
+                                    prompt : '请输入密码'
+                                },
+                                {
+                                    type   : 'length[4]',
+                                    prompt : '密码长度应该大于4位'
+                                }
+                            ]
+                        }
+                    }
+                })
+            ;
+        })
+    ;
+</script>
+<body>
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <div class="content">
+                CBlog后台管理
+            </div>
+        </h2>
+        <form class="ui large form" method="post" action="#" th:action="@{/admin/login}">
+            <div class="ui segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="username" placeholder="账户....">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="密码....">
+                    </div>
+                </div>
+                <button class="ui fluid large teal submit button">登&nbsp;&nbsp;&nbsp;录</button>
+            </div>
+            <div class="ui error message"></div>
+            <div class="ui negative message" th:unless="${#strings.isEmpty(msg)}" th:text="${msg}"></div>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

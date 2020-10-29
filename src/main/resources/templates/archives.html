@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head  th:replace="common :: head(~{::title})">
+    <title>归档</title>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav th:replace="common :: nav(4)" class="ui inverted attached segment m-padding-mini m-shadow"></nav>
+
+    <!-- 内容 -->
+    <div class="m-padding-normal m-margin-larger">
+      <!-- haeder -->
+      <div class="ui container">
+        <div class="ui top attached segment m-padding-all-big-onmobile">
+          <div class="ui middle aligned two column grid">
+            <div class="column">
+              <h3 class="ui teal header">归档</h3>
+            </div>
+            <!-- 文章数 -->
+            <div class="right aligned column">
+              共 <h3 class="ui teal header m-inline-block" th:text="${blogCount}"></h3> 篇博客
+            </div>
+          </div>
+        </div>
+          <th:block th:each="item : ${archiveMap}">
+        <!-- 年份 -->
+        <h2 class="ui header center aligned" style="margin-top: 0.5em !important;margin-bottom: 0.5em!important;" th:text="${item.key}"></h2>
+        <!-- 列表 -->
+        <div class="ui fluid vertical menu">
+          <!-- 项 -->
+          <a href="" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${item.value}">
+            <span>
+              <i class="icon mini dot circle outline teal m-icon-right-mr"></i><span th:text="${blog.title}"></span>&nbsp;
+              <div class="ui teal basic mini label left" th:text="${#dates.format(blog.updateTime,'MMMdd')}"></div>
+            </span>
+              <div class="ui basic left pointing label m-padded-mini " th:classappend="${blog.flag=='混合'} ? 'olive':(${blog.flag=='原创'} ? 'orange':'yellow')" th:text="${blog.flag}"></div>
+          </a>
+        </div>
+          </th:block>
+        
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer th:replace="common :: footer" class="ui inverted vertical segment m-padding-massive"></footer>
+
+    <!--/*/<th:block th:replace="common :: script">/*/-->
+    <!--/*/</th:block>/*/-->
+
+    <script>
+      $('#nav-toggle-button').click(function(){
+        $('.m-mobile-toggle').toggleClass('m-mobile-hide');
+      });
+    </script>
+</body>
+</html>

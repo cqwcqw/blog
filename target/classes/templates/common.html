@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png" />
+    <script src="/static/js/jq.min.js"></script>
+    <script src="/static/semantic/semantic.min.js"></script>
+    <link rel="stylesheet" href="/static/semantic/semantic.min.css">
+    <script src="/static/plugins/meditor/editormd.min.js"></script>
+    <script src="/static/js/prism.js" ></script>
+    <script src="/static/js/tocbot.min.js" ></script>
+    <script src="/static/js/qrcode.min.js" ></script>
+    <script src="/static/js/noframework.waypoints.min.js" ></script>
+    <link rel="stylesheet" href="/static/plugins/meditor/css/editormd.min.css">
+    <link rel="stylesheet" href="/static/css/my.css" th:href="@{/static/css/my.css}">
+    <link rel="stylesheet" href="/static/css/animation.css" >
+    <link rel="stylesheet" href="/static/css/typo.css">
+    <link rel="stylesheet" href="/static/css/prism.css" >
+    <link rel="stylesheet" href="/static/css/tocbot.css" >
+    <title th:replace="${title}"></title>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="ui inverted attached segment m-padding-mini" th:fragment="nav(n)">
+    <div class="ui container">
+        <div class="ui inverted secondary menu stackable">
+            <h2 class="ui teal header item" th:text="#{siteTitle}">CBlog</h2>
+            <a href="/" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer" th:classappend="${n==1} ? 'active'"><i class="home mini icon m-icon-wrong-inner"></i>&nbsp;&nbsp;首页</a>
+            <a href="/types/-1" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer" th:classappend="${n==2} ? 'active'"><i class="idea mini icon m-icon-wrong-inner"></i>&nbsp;&nbsp;分类</a>
+            <a href="/tags/-1" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer" th:classappend="${n==3} ? 'active'"><i class="icon mini tags m-icon-wrong-inner"></i>&nbsp;&nbsp;标签</a>
+            <a href="/archives" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer" th:classappend="${n==4} ? 'active'"><i class="icon mini clone m-icon-wrong-inner"></i>&nbsp;&nbsp;归档</a>
+            <a href="/about" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer" th:classappend="${n==5} ? 'active'"><i class="info mini icon m-icon-wrong-inner"></i>&nbsp;&nbsp;关于我</a>
+            <div class="m-mobile-toggle m-mobile-hide right item">
+                <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" name="query" placeholder="搜索..." th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui black button m-nav-right m-mobile-only" id="nav-toggle-button"><i class="icon sidebar center"></i></a>
+</nav>
+
+<!-- 底部 -->
+<footer th:fragment="footer" class="ui inverted vertical segment m-padding-massive">
+    <div class="ui center aligned container">
+        <div class="ui divided inverted stackable grid">
+            <div class="three wide column">
+                <img src="/static/images/QRCode.png" alt="微信二维码" class="rounded image ui qrCode centered">
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-space">最新博客</h4>
+                <div id="latestBlog-container">
+                    <div class="ui inverted link list" th:fragment="latestBlogList">
+                    <a href="" th:href="@{/blog/{id}(id=${blog.id})}" class="item" target="_blank" th:each="blog:${latestBlogList}" th:text="${blog.title}">博客一</a>
+                </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header m-text-thin m-text-space" >联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="" th:text="#{footer.email}" class="item">E-mail: 2664918243@qq.com</a>
+                    <a href="" th:text="#{footer.qq}" class="item">QQ: 2664918243</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 th:text="#{footer.titleDescription}" class="ui inverted header m-text-thin m-text-space">Blog&nbsp; Of&nbsp; Program</h4>
+                <p th:text="#{footer.blogDescription}" class="m-text-thin m-text-space m-opacity-mini">不定时更新博客，主要关于前、后端和数据库。</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p th:text="#{footer.copyright}" class="m-text-thin m-text-space m-opacity-tiny">Copyright © 2020 CBlog Design by QW Chan</p>
+    </div>
+</footer>
+<th:block th:fragment="script">
+    <script>
+        $('#latestBlog-container').load(/*[[@{/footer/latestBlog}]]*/"/footer/latestBlog");
+    </script>
+</th:block>
+
+</body>
+</html>

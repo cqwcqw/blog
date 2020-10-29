@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common :: head(~{::title})">
+    <title>404</title>
+</head>
+<body>
+<nav th:replace="common :: nav(0)" class="ui inverted attached segment m-padding-mini"></nav>
+
+<div class="m-padding-normal  m-margin-larger aligned middle" style="min-height: 70% !important;">
+    <div class="ui error message container">
+            <h2>404</h2>
+            <div th:text="${msg}"></div>
+            <p class="m-text">你好像迷路了....</p>
+    </div>
+</div>
+
+<!-- 底部 -->
+<footer th:replace="common :: footer" class="ui inverted vertical segment m-padding-massive"></footer>
+
+<!--/*/<th:block th:replace="common :: script">/*/-->
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('#nav-toggle-button').click(function(){
+        $('.m-mobile-toggle').toggleClass('m-mobile-hide');
+    });
+</script>
+</body>
+</html>

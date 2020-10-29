@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head  th:replace="common :: head(~{::title})">
+    <title>分类</title>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav th:replace="common :: nav(2)" class="ui inverted attached segment m-padding-mini m-shadow">
+        <div class="ui container">
+            <div class="ui inverted secondary menu stackable">
+                <h2 class="ui teal header item">CBlog</h2>
+                <a href="" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer"><i class="home mini icon m-icon-wrong-inner"></i>&nbsp;&nbsp;首页</a>
+                <a href="" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer"><i class="idea mini icon m-icon-wrong-inner"></i>&nbsp;&nbsp;分类</a>
+                <a href="" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer"><i class="icon mini tags m-icon-wrong-inner"></i>&nbsp;&nbsp;标签</a>
+                <a href="" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer"><i class="icon mini clone m-icon-wrong-inner"></i>&nbsp;&nbsp;归档</a>
+                <a href="" class="m-mobile-toggle m-mobile-hide item m-icon-wrong-outer"><i class="info mini icon m-icon-wrong-inner"></i>&nbsp;&nbsp;关于我</a>
+                <div class="m-mobile-toggle m-mobile-hide right item">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" placeholder="搜索...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui black button m-nav-right m-mobile-only" id="nav-toggle-button"><i class="icon sidebar center"></i></a>
+    </nav>
+
+    <!-- 内容 -->
+    <div class="m-padding-normal m-margin-larger">
+      <!-- haeder -->
+      <div class="ui container">
+        <div class="ui top attached segment">
+          <div class="ui middle aligned two column grid">
+            <div class="column">
+              <h3 class="ui teal header">分类</h3>
+            </div>
+            <!-- 文章数 -->
+            <div class="right aligned column">
+              共 <h3 class="ui teal header m-inline-block" th:text="${#arrays.length(types)}">14</h3> 个
+            </div>
+          </div>
+        </div>
+
+        <!-- tags -->
+        <div class="ui bottom attached segment m-padding-normal">
+          <div class="ui labeled button m-margin-tb" th:each="t:${types}">
+            <a href="" th:href="@{/types/{id}(id=${t.id})}" class="ui basic button" th:classappend="${t.id==activeTypeId} ? 'teal'" th:text="${t.name}">Tag</a>
+            <div class="ui basic left pointing label" th:classappend="${t.id==activeTypeId} ? 'teal'" th:text="${#arrays.length(t.blogs)}">123</div>
+          </div>
+        </div>
+
+          <!-- 文章 -->
+          <div class="ui teal top attached segment" style="padding-top: 0px!important;padding-bottom: 0px!important;">
+              <!-- 文章 -->
+              <div class="ui vertical m-padding-all-big segment" th:each="blog:${page.content}">
+                  <div class="ui mobile reversed stackable grid">
+                      <div class="eleven wide column">
+                          <!-- title -->
+                          <h3 class="ui header"><a target="_blank" href="" class="m-color-black" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}"></a></h3>
+                          <!-- content-preview -->
+                          <p style="word-break: break-all;" class="m-text" th:text="|${blog.description}......|">最新新博客最新新博客最新新博客最新新博客最新新博客新新博客最新新博客新新博客最新新博客新新博客最新新博客新新博客最新新博客最新新博客最新新博客最新新博客最新新博客最新新博客</p>
+                          <div class="ui stackable grid">
+                              <div class="row" style="padding-bottom: 0px!important;">
+                                  <div class="eleven wide column">
+                                      <div class="ui mini middle aligned link list horizontal" >
+                                          <div class="item middle aligned">
+                                              <!-- heaher -->
+                                              <img src="https://picsum.photos/seed/picsum/800/450" th:src="@{${blog.user.avatar}}" alt="" class="avatar image ui">
+                                              <div class="content">
+                                                  <!-- author -->
+                                                  <a th:href="@{/aboutme}" class="header" th:text="${blog.user.nickname}">陈祺炜</a>
+                                              </div>
+                                          </div>
+                                          <div class="item middle aligned">
+                                              <!-- calendar -->
+                                              <div class="m-icon-wrong-outer"><i class="icon calendar m-icon-wrong-inner"></i>&nbsp;&nbsp;<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd hh:mm:sss')}"></span></div>
+                                          </div>
+                                          <div class="item middle aligned">
+                                              <!-- view -->
+                                              <div class="m-icon-wrong-outer"><i class="icon eye m-icon-wrong-inner"></i>&nbsp;&nbsp;<span th:text="${blog.view}"></span></div>
+                                          </div>
+                                          <div class="item middle aligned">
+                                              <!-- view -->
+                                              <div class="m-icon-wrong-outer"><i class="icon comment outline m-icon-wrong-inner"></i>&nbsp;&nbsp;<span th:text="${#arrays.length(blog.comments)}"></span></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!-- tags -->
+                                  <div class="five wide column right aligned">
+                                      <a href="" th:href="@{/types/{id}(id=${blog.type.id})}" class="button ui teal basic mini m-padding-all-normal" th:text="${blog.type.name}">MySQL数据库</a>
+                                      <a style="cursor: default" href="javascript:void(0);" class="ui basic left label m-margin-top" th:classappend="${blog.flag=='混合'} ? 'olive':(${blog.flag=='原创'} ? 'orange':'yellow')"><span th:text="${blog.flag}"></span></a>
+                                  </div>
+                              </div>
+                              <div class="row" style="margin-bottom: 0px!important;">
+                                  <div class="column">
+                                      <a href="" th:href="@{/tags/{id}(id=${tag.id})}" class="ui teal basic left pointing label m-margin-top" th:each="tag:${blog.tags}"><span th:text="${tag.name}"></span></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="five wide column middle aligned">
+                          <a href="#" th:href="@{/blog/{id}(id=${blog.id})}">
+                              <!-- side-image -->
+                              <img src="https://picsum.photos/seed/picsum/800/550" th:src="@{${blog.firstPicture}}" alt="gfd" class="ui rounded image">
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- 分页 -->
+          <div class="ui bottom attached segment center aligned" th:unless="${page.totalPages}>1">
+              <h4 class="" style="color: grey !important;font-weight: 600">暂无更多</h4>
+          </div>
+          <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+              <div class="ui middle aligned two column grid">
+                  <div class="column">
+                      <a href="#" th:href="@{/types/{id}?page={page}(id=${activeTypeId},page=${page.number}-1)}"  th:unless="${page.first}" class="ui teal basic button">上一页</a>
+                  </div>
+                  <div class="right aligned column">
+                      <a href="#" th:href="@{/types/{id}?page={page}(id=${activeTypeId},page=${page.number}+1)}"  th:unless="${page.last}" class="ui teal basic button">下一页</a>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer th:replace="common :: footer" class="ui inverted vertical segment m-padding-massive">
+        <div class="ui center aligned container">
+            <div class="ui divided inverted stackable grid">
+                <div class="three wide column">
+                    <img src="../static/images/QRCode.png" alt="微信二维码" class="rounded image ui qrCode centered">
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-space">最新博客</h4>
+                        <div class="ui inverted link list">
+                            <a href="" class="item">博客一</a>
+                            <a href="" class="item">博客一asdqews</a>
+                            <a href="" class="item">博客一</a>
+                        </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-space">最新博客</h4>
+                      <div class="ui inverted link list">
+                          <a href="" class="item">博客一</a>
+                          <a href="" class="item">博客一</a>
+                          <a href="" class="item">博客一</a>
+                      </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header m-text-thin m-text-space">最新博客</h4>
+                    <p class="m-text-thin m-text-space m-opacity-mini">最新新博客最新新博客最新新博客最新新博客最新新博客最新新博客最新新博客最新新博客最新新博客最新新博客</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-space m-opacity-tiny">Copyright © 2020 CBlog Design by QW Chan</p>
+        </div>
+    </footer>
+
+
+
+    <!--/*/<th:block th:replace="common :: script">/*/-->
+    <!--/*/</th:block>/*/-->
+
+    <script>
+      $('#nav-toggle-button').click(function(){
+        $('.m-mobile-toggle').toggleClass('m-mobile-hide');
+      });
+    </script>
+</body>
+</html>

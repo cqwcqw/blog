@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/common :: head(~{::title})">
+    <title>分类管理</title>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav th:replace="admin/common :: nav(2)" class="ui inverted attached segment m-padding-mini m-shadow"></nav>
+    <!-- 二级导航 -->
+    <div class="ui attached pointing menu">
+      <div class="ui container">
+        <div class="left menu">
+            <a href="" th:href="@{/admin/types}" class="item teal active">列表</a>
+            <a href="" th:href="@{/admin/types/add}" class="item">新增</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 内容 -->
+    <div class="m-padding-normal m-margin-larger" style="min-height: 70%;">
+      <div class="ui container">
+          <!-- 提示信息 -->
+          <div class="ui success message m-text" th:unless="${#strings.isEmpty(msg)}">
+              <i class="icon close"></i>
+              <div class="header">提示：</div>
+              <p th:text="${msg}"></p>
+          </div>
+        <!-- 结果表格 -->
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>标题</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="t,iterStat : ${page.content}">
+              <td th:text="${iterStat.count}"></td>
+              <td th:text="${t.name}"></td>
+              <td>
+                <a href="" th:href="@{/admin/types/edit/{id}(id=${t.id})}" class="ui mini teal button basic">编辑</a>
+                <a href="" th:href="@{/admin/types/delete/{id}(id=${t.id})}" class="ui mini red button basic">删除</a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="6">
+                <a href="" th:href="@{/admin/types/add}" class="ui teal basic button">新增</a>
+                <div class="ui right floated pagination menu" th:if="${page.totalPages}>1">
+                  <a th:href="@{/admin/types/(page=${page.number}-1)}" th:unless="${page.first}" class="icon item">
+                    <i class="left chevron icon"></i>
+                  </a>
+                  <a th:href="@{/admin/types/(page=${page.number}+1)}" th:unless="${page.last}" class="icon item">
+                    <i class="right chevron icon"></i>
+                  </a>
+                </div>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer  th:replace="admin/common :: footer" class="ui inverted vertical segment m-padding-massive"></footer>
+
+    <!--/*/<th:block th:replace="admin/common :: script">/*/-->
+    <!--/*/</th:block>/*/-->
+
+    <script>
+      $('#nav-toggle-button').click(function(){
+        $('.m-mobile-toggle').toggleClass('m-mobile-hide');
+      });
+      $('.ui.dropdown').dropdown({
+        on:'hover'
+      });
+      $('.message .close').on('click',function () {
+          $(this).closest('.message').transition('fade');
+      });
+    </script>
+</body>
+</html>
